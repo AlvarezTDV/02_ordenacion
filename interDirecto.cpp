@@ -11,6 +11,7 @@ void interDirBi(int, int[]);
 
 int main() {
 	int numerosArreglo, arreglo[100], seleccion;
+	cout << "// PROGRAMA PARA ORDENAR ARREGLOS // " << endl;
 	cout << "Ingresa cuantos numeros tendra el arreglo (MAX 100): ";
 	cin >> numerosArreglo;
 	ingresarNumArreglo(numerosArreglo, arreglo);
@@ -27,7 +28,8 @@ int main() {
 			cout << "2. INTERCAMBIO DIRECTO POR LA IZQUIERDA" << endl;
 			cout << "3. INTERCAMBIO DIRECTO CON SENIAL" << endl;
 			cout << "4. INTERCAMBIO DIRECTO BIDIRECCIONAL" << endl;
-			cout << "5. SALIR" << endl;
+			cout << "5. MOSTRAR ARREGLO INGRESADO" << endl;
+			cout << "6. SALIR" << endl;
 			cin >> seleccion;
 			
 			//SWITCH PARA ESCOGER QUE TIPO DE INTERCAMBIO DESEA EL USUARIO
@@ -53,13 +55,18 @@ int main() {
 					mostrarArreglo(numerosArreglo, arreglo);
 					break;
 				case 5:
+					cout << endl << "Arreglo ingresado: " << endl;
+					mostrarArreglo(numerosArreglo, arreglo);
+					break;
+				case 6:
 					cout << endl << "// SALIENDO DEL PROGRAMA //" << endl;
 					break;
 				default:
-					cout << "ERROR: INGRESO UN NUMERO NO VALIDO" << endl;
+					cout << endl << "ERROR: INGRESO UN NUMERO NO VALIDO" << endl;
+					break;
 			}
 		}
-	} while ( seleccion != 5 );
+	} while ( seleccion != 6 );
 	return 0;
 }
 
