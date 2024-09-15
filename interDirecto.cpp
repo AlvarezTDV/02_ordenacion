@@ -6,6 +6,7 @@ void ingresarNumArreglo(int, int[]);
 void mostrarArreglo(int, int[]);
 void interDirDer(int, int[]);
 void interDirIzq(int, int[]);
+void interDirCen(int, int[]);
 
 int main() {
 	int numerosArreglo, arreglo[100], seleccion;
@@ -22,7 +23,7 @@ int main() {
 		cout << endl << "// TIPO DE INTERCAMBIO DIRECTO //" << endl;
 		cout << "1. INTERCAMBIO DIRECTO POR LA DERECHA" << endl;
 		cout << "2. INTERCAMBIO DIRECTO POR LA IZQUIERDA" << endl;
-		cout << "3. INTERCAMBIO DIRECTO CON SEÑAL" << endl;
+		cout << "3. INTERCAMBIO DIRECTO CON SENIAL" << endl;
 		cout << "4. INTERCAMBIO DIRECTO BIDIRECCIONAL" << endl;
 		cin >> seleccion;
 		
@@ -39,6 +40,9 @@ int main() {
 				mostrarArreglo(numerosArreglo, arreglo);
 				break;
 			case 3:
+				interDirCen(numerosArreglo, arreglo);
+				cout << endl << "Arreglo ordenado: " << endl;
+				mostrarArreglo(numerosArreglo, arreglo);
 				break;
 			case 4:
 				break;
@@ -46,6 +50,7 @@ int main() {
 				cout << "ERROR: INGRESO UN NUMERO NO VALIDO" << endl;
 		}
 	}
+	return 0;
 }
 
 //FUNCION PARA INGRESAR DATOS A UN ARREGLO
@@ -89,5 +94,24 @@ void interDirIzq(int numerosArreglo, int arreglo[100]) {
 				arreglo[j] = aux;
 			}
 		}
+	}
+}
+
+//FUNCION INTERCAMBIO DIRECTO: CON SEÑAL
+void interDirCen(int numerosArreglo, int arreglo[100]) {
+	int cen = 1;
+	int i = 0;
+	int aux;
+	while ( i <= numerosArreglo-1 && cen == 1 ) {
+		cen = 0;
+		for ( int j = 0; j < numerosArreglo-1-i; j++ ) {
+			if ( arreglo[j] > arreglo[j+1] ) {
+				aux = arreglo[j];
+				arreglo[j] = arreglo[j+1];
+				arreglo[j+1] = aux;
+				cen = 1;
+			}
+		}
+		i++;
 	}
 }
