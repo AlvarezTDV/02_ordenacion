@@ -2,21 +2,22 @@
 using namespace std;
 
 //INICIALIZACION DE LAS FUNCIONES
-void ingresarNumArreglo(int, int[]);
-void mostrarArreglo(int, int[]);
+void ingresarNumArreglo(int, int[], int[]);
+void mostrarArregloCop(int, int[]);
+void mostrarArregloOri(int, int[]);
 void interDirDer(int, int[]);
 void interDirIzq(int, int[]);
 void interDirCen(int, int[]);
 void interDirBi(int, int[]);
 
 int main() {
-	int numerosArreglo, arreglo[100], seleccion;
+	int numerosArreglo, arreglo[100], arreglo1[100], seleccion;
 	cout << "// PROGRAMA PARA ORDENAR ARREGLOS // " << endl;
 	cout << "Ingresa cuantos numeros tendra el arreglo (MAX 100): ";
 	cin >> numerosArreglo;
-	ingresarNumArreglo(numerosArreglo, arreglo);
+	ingresarNumArreglo(numerosArreglo, arreglo, arreglo1);
 	cout << endl << "Arreglo ingresado: " << endl;
-	mostrarArreglo(numerosArreglo, arreglo);
+	mostrarArregloOri(numerosArreglo, arreglo);
 	
 	do {
 		//CONDICION PARA COMPROBAR SI EL USUARIO NO SOBREPASO EL LIMITE
@@ -35,28 +36,28 @@ int main() {
 			//SWITCH PARA ESCOGER QUE TIPO DE INTERCAMBIO DESEA EL USUARIO
 			switch( seleccion ) {
 				case 1:
-					interDirDer(numerosArreglo, arreglo);
+					interDirDer(numerosArreglo, arreglo1);
 					cout << endl << "Arreglo ordenado: " << endl;
-					mostrarArreglo(numerosArreglo, arreglo);
+					mostrarArregloCop(numerosArreglo, arreglo1);
 					break;
 				case 2:
-					interDirIzq(numerosArreglo, arreglo);
+					interDirIzq(numerosArreglo, arreglo1);
 					cout << endl << "Arreglo ordenado: " << endl;
-					mostrarArreglo(numerosArreglo, arreglo);
+					mostrarArregloCop(numerosArreglo, arreglo1);
 					break;
 				case 3:
-					interDirCen(numerosArreglo, arreglo);
+					interDirCen(numerosArreglo, arreglo1);
 					cout << endl << "Arreglo ordenado: " << endl;
-					mostrarArreglo(numerosArreglo, arreglo);
+					mostrarArregloCop(numerosArreglo, arreglo1);
 					break;
 				case 4:
-					interDirBi(numerosArreglo, arreglo);
+					interDirBi(numerosArreglo, arreglo1);
 					cout << endl << "Arreglo ordenado: " << endl;
-					mostrarArreglo(numerosArreglo, arreglo);
+					mostrarArregloCop(numerosArreglo, arreglo1);
 					break;
 				case 5:
 					cout << endl << "Arreglo ingresado: " << endl;
-					mostrarArreglo(numerosArreglo, arreglo);
+					mostrarArregloOri(numerosArreglo, arreglo);
 					break;
 				case 6:
 					cout << endl << "// SALIENDO DEL PROGRAMA //" << endl;
@@ -71,61 +72,71 @@ int main() {
 }
 
 //FUNCION PARA INGRESAR DATOS A UN ARREGLO
-void ingresarNumArreglo(int numerosArreglo, int arreglo[100]) {
+void ingresarNumArreglo(int numerosArreglo, int arreglo[100], int arreglo1[100]) {
 	for ( int i = 0; i < numerosArreglo; i++ ) {
 		cout << "Ingresa el valor nro " << i+1 << ": ";
 		cin >> arreglo[i];
+		//DUPLICAMOS EL ARREGLO PARA EVITAR SUSTITUIR EL ARREGLO ORIGINAL
+		arreglo1[i] = arreglo[i];
 	}
 }
 
-//FUNCION PARA MOSTRAR EL ARREGLO
-void mostrarArreglo(int numerosArreglo, int arreglo[100]) {
+//FUNCION PARA MOSTRAR EL ARREGLO ORIGINAL
+void mostrarArregloOri(int numerosArreglo, int arreglo[100]) {
 	for ( int i = 0; i < numerosArreglo; i++ ) {
 		cout << arreglo[i] << "  ";
 	}
 	cout << endl;
 }
 
+//FUNCION PARA MOSTRAR EL ARREGLO COPIADO
+void mostrarArregloCop(int numerosArreglo, int arreglo1[100]) {
+	for ( int i = 0; i < numerosArreglo; i++ ) {
+		cout << arreglo1[i] << "  ";
+	}
+	cout << endl;
+}
+
 //FUNCION INTERCAMBIO DIRECTO: POR LA DERECHA
-void interDirDer(int numerosArreglo, int arreglo[100]) {
+void interDirDer(int numerosArreglo, int arreglo1[100]) {
 	int aux;
 	for ( int i = 0; i < numerosArreglo-1; i++ ) {
 		for ( int j = 0; j < numerosArreglo-i-1; j++ ) {
-			if ( arreglo[j] > arreglo [j+1] ) {
-				aux = arreglo[j];
-				arreglo[j] = arreglo[j+1];
-				arreglo[j+1] = aux;
+			if ( arreglo1[j] > arreglo1 [j+1] ) {
+				aux = arreglo1[j];
+				arreglo1[j] = arreglo1[j+1];
+				arreglo1[j+1] = aux;
 			}
 		}
 	}
 }
 
 //FUNCION INTERCAMBIO DIRECTO: POR LA IZQUIERDA
-void interDirIzq(int numerosArreglo, int arreglo[100]) {
+void interDirIzq(int numerosArreglo, int arreglo1[100]) {
 	int aux;
 	for ( int i = 0; i < numerosArreglo-1; i++ ) {
 		for ( int j = numerosArreglo-1; j > i; j-- ) {
-			if ( arreglo[j] < arreglo [j-1] ) {
-				aux = arreglo[j-1];
-				arreglo[j-1] = arreglo[j];
-				arreglo[j] = aux;
+			if ( arreglo1[j] < arreglo1 [j-1] ) {
+				aux = arreglo1[j-1];
+				arreglo1[j-1] = arreglo1[j];
+				arreglo1[j] = aux;
 			}
 		}
 	}
 }
 
 //FUNCION INTERCAMBIO DIRECTO: CON SEÑAL
-void interDirCen(int numerosArreglo, int arreglo[100]) {
+void interDirCen(int numerosArreglo, int arreglo1[100]) {
 	int cen = 1;
 	int i = 0;
 	int aux;
 	while ( i <= numerosArreglo-1 && cen == 1 ) {
 		cen = 0;
 		for ( int j = 0; j < numerosArreglo-1-i; j++ ) {
-			if ( arreglo[j] > arreglo[j+1] ) {
-				aux = arreglo[j];
-				arreglo[j] = arreglo[j+1];
-				arreglo[j+1] = aux;
+			if ( arreglo1[j] > arreglo1[j+1] ) {
+				aux = arreglo1[j];
+				arreglo1[j] = arreglo1[j+1];
+				arreglo1[j+1] = aux;
 				cen = 1;
 			}
 		}
@@ -134,26 +145,26 @@ void interDirCen(int numerosArreglo, int arreglo[100]) {
 }
 
 //FUNCION INTERCAMBIO DIRECTO: BIDIRECCIONAL
-void interDirBi(int numerosArreglo, int arreglo[100]) {
+void interDirBi(int numerosArreglo, int arreglo1[100]) {
 	int aux;
 	int izq = 0;
 	int der = numerosArreglo - 1;
 	int k = numerosArreglo - 1;
 	while ( izq <= der ) {
 		for ( int i = der; i >= izq; i-- ) {
-			if ( arreglo[i-1] > arreglo[i] ) {
-				aux = arreglo[i-1];
-				arreglo[i-1] = arreglo[i];
-				arreglo[i] = aux;
+			if ( arreglo1[i-1] > arreglo1[i] ) {
+				aux = arreglo1[i-1];
+				arreglo1[i-1] = arreglo1[i];
+				arreglo1[i] = aux;
 				k = i; 
 			}
 		}
 		izq = k + 1;
 		for ( int i = izq; i <= der; i++ ) {
-			if ( arreglo[i-1] > arreglo[i] ) {
-				aux = arreglo[i-1];
-				arreglo[i-1] = arreglo[i];
-				arreglo[i] = aux;
+			if ( arreglo1[i-1] > arreglo1[i] ) {
+				aux = arreglo1[i-1];
+				arreglo1[i-1] = arreglo1[i];
+				arreglo1[i] = aux;
 				k = i; 
 			}
 		}
