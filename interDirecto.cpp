@@ -7,6 +7,7 @@ void mostrarArreglo(int, int[]);
 void interDirDer(int, int[]);
 void interDirIzq(int, int[]);
 void interDirCen(int, int[]);
+void interDirBi(int, int[]);
 
 int main() {
 	int numerosArreglo, arreglo[100], seleccion;
@@ -45,6 +46,9 @@ int main() {
 				mostrarArreglo(numerosArreglo, arreglo);
 				break;
 			case 4:
+				interDirBi(numerosArreglo, arreglo);
+				cout << endl << "Arreglo ordenado: " << endl;
+				mostrarArreglo(numerosArreglo, arreglo);
 				break;
 			default:
 				cout << "ERROR: INGRESO UN NUMERO NO VALIDO" << endl;
@@ -113,5 +117,33 @@ void interDirCen(int numerosArreglo, int arreglo[100]) {
 			}
 		}
 		i++;
+	}
+}
+
+//FUNCION INTERCAMBIO DIRECTO: BIDIRECCIONAL
+void interDirBi(int numerosArreglo, int arreglo[100]) {
+	int aux;
+	int izq = 0;
+	int der = numerosArreglo - 1;
+	int k = numerosArreglo - 1;
+	while ( izq <= der ) {
+		for ( int i = der; i >= izq; i-- ) {
+			if ( arreglo[i-1] > arreglo[i] ) {
+				aux = arreglo[i-1];
+				arreglo[i-1] = arreglo[i];
+				arreglo[i] = aux;
+				k = i; 
+			}
+		}
+		izq = k + 1;
+		for ( int i = izq; i <= der; i++ ) {
+			if ( arreglo[i-1] > arreglo[i] ) {
+				aux = arreglo[i-1];
+				arreglo[i-1] = arreglo[i];
+				arreglo[i] = aux;
+				k = i; 
+			}
+		}
+		der = k - 1;
 	}
 }
