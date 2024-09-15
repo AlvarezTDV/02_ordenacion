@@ -13,47 +13,53 @@ int main() {
 	int numerosArreglo, arreglo[100], seleccion;
 	cout << "Ingresa cuantos numeros tendra el arreglo (MAX 100): ";
 	cin >> numerosArreglo;
+	ingresarNumArreglo(numerosArreglo, arreglo);
+	cout << endl << "Arreglo ingresado: " << endl;
+	mostrarArreglo(numerosArreglo, arreglo);
 	
-	//CONDICION PARA COMPROBAR SI EL USUARIO NO SOBREPASO EL LIMITE
-	if ( numerosArreglo > 100 ) {
-		cout << "ERROR: SOBREPASO EL LIMITE" << endl;
-	} else {
-		ingresarNumArreglo(numerosArreglo, arreglo);
-		cout << endl << "Arreglo ingresado: " << endl;
-		mostrarArreglo(numerosArreglo, arreglo);
-		cout << endl << "// TIPO DE INTERCAMBIO DIRECTO //" << endl;
-		cout << "1. INTERCAMBIO DIRECTO POR LA DERECHA" << endl;
-		cout << "2. INTERCAMBIO DIRECTO POR LA IZQUIERDA" << endl;
-		cout << "3. INTERCAMBIO DIRECTO CON SENIAL" << endl;
-		cout << "4. INTERCAMBIO DIRECTO BIDIRECCIONAL" << endl;
-		cin >> seleccion;
-		
-		//SWITCH PARA ESCOGER QUE TIPO DE INTERCAMBIO DESEA EL USUARIO
-		switch( seleccion ) {
-			case 1:
-				interDirDer(numerosArreglo, arreglo);
-				cout << endl << "Arreglo ordenado: " << endl;
-				mostrarArreglo(numerosArreglo, arreglo);
-				break;
-			case 2:
-				interDirIzq(numerosArreglo, arreglo);
-				cout << endl << "Arreglo ordenado: " << endl;
-				mostrarArreglo(numerosArreglo, arreglo);
-				break;
-			case 3:
-				interDirCen(numerosArreglo, arreglo);
-				cout << endl << "Arreglo ordenado: " << endl;
-				mostrarArreglo(numerosArreglo, arreglo);
-				break;
-			case 4:
-				interDirBi(numerosArreglo, arreglo);
-				cout << endl << "Arreglo ordenado: " << endl;
-				mostrarArreglo(numerosArreglo, arreglo);
-				break;
-			default:
-				cout << "ERROR: INGRESO UN NUMERO NO VALIDO" << endl;
+	do {
+		//CONDICION PARA COMPROBAR SI EL USUARIO NO SOBREPASO EL LIMITE
+		if ( numerosArreglo > 100 ) {
+			cout << "ERROR: SOBREPASO EL LIMITE" << endl;
+		} else {
+			cout << endl << "// TIPO DE INTERCAMBIO DIRECTO //" << endl;
+			cout << "1. INTERCAMBIO DIRECTO POR LA DERECHA" << endl;
+			cout << "2. INTERCAMBIO DIRECTO POR LA IZQUIERDA" << endl;
+			cout << "3. INTERCAMBIO DIRECTO CON SENIAL" << endl;
+			cout << "4. INTERCAMBIO DIRECTO BIDIRECCIONAL" << endl;
+			cout << "5. SALIR" << endl;
+			cin >> seleccion;
+			
+			//SWITCH PARA ESCOGER QUE TIPO DE INTERCAMBIO DESEA EL USUARIO
+			switch( seleccion ) {
+				case 1:
+					interDirDer(numerosArreglo, arreglo);
+					cout << endl << "Arreglo ordenado: " << endl;
+					mostrarArreglo(numerosArreglo, arreglo);
+					break;
+				case 2:
+					interDirIzq(numerosArreglo, arreglo);
+					cout << endl << "Arreglo ordenado: " << endl;
+					mostrarArreglo(numerosArreglo, arreglo);
+					break;
+				case 3:
+					interDirCen(numerosArreglo, arreglo);
+					cout << endl << "Arreglo ordenado: " << endl;
+					mostrarArreglo(numerosArreglo, arreglo);
+					break;
+				case 4:
+					interDirBi(numerosArreglo, arreglo);
+					cout << endl << "Arreglo ordenado: " << endl;
+					mostrarArreglo(numerosArreglo, arreglo);
+					break;
+				case 5:
+					cout << endl << "// SALIENDO DEL PROGRAMA //" << endl;
+					break;
+				default:
+					cout << "ERROR: INGRESO UN NUMERO NO VALIDO" << endl;
+			}
 		}
-	}
+	} while ( seleccion != 5 );
 	return 0;
 }
 
