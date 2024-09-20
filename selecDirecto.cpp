@@ -11,6 +11,8 @@ int main() {
 	cin >> capacidad;
 	if ( capacidad > 100 ) {
 		cout << "ERROR: SOBREPASO EL LIMITE" << endl;
+	} else if ( capacidad <= 0) {
+		cout << "ERROR: DEBE INGRESAR UN VALOR POSITIVO";
 	} else {
 		ingresarNumArreglo(capacidad, arreglo);
 		cout << "ARREGLO INGRESADO:" << endl;
