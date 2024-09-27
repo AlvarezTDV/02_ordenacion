@@ -6,6 +6,8 @@ void mostrarArregloCop(int, int[]);
 void mostrarArregloOri(int, int[]);
 void reseteo(int, int[], int[]);
 void metodoShell(int, int []);
+void quicksort(int, int []);
+void reduce(int, int, int []);
 
 
 int main() {
@@ -37,7 +39,7 @@ int main() {
 				case 2:
 					reseteo(capacidad, arreglo1, arreglo);
 					cout << "ARREGLO ORDENADO CON EL METODO RAPIDO: " << endl;
-					
+					quicksort(capacidad, arreglo1);
 					mostrarArregloCop(capacidad, arreglo1);
 					break;
 				case 3:
@@ -108,6 +110,48 @@ void metodoShell( int capacidad, int arreglo1[100] ) {
 				}
 				i = i + 1;
 			}
+		}
+	}
+}
+
+//FUNCION METODO QUICK SORT
+void quicksort( int capacidad, int arreglo1[100] ) {
+	reduce( 0, capacidad-1, arreglo1 );
+}
+
+//FUNCION REDUCE PARA QUICK SORT
+void reduce( int inicio, int final, int arreglo1[100] ) {
+	int aux;
+	int izq = inicio;
+	int der = final;
+	int pos = izq;
+	int cen = 1;
+	while ( cen == 1 ) {
+		cen = 0;
+		while ( arreglo1[pos] <= arreglo1[der] && pos != der ) {
+			der = der - 1;
+		}
+		if ( pos != der ) {
+			aux = arreglo1[pos];
+			arreglo1[pos] = arreglo1[der];
+			arreglo1[der] = aux;
+			pos = der;
+			while ( arreglo1[pos] >= arreglo1[izq] && pos != izq ) {
+				izq = izq + 1;
+			}
+			if ( pos != izq ) {
+				aux = arreglo1[pos];
+				arreglo1[pos] = arreglo1[izq];
+				arreglo1[izq] = aux;
+				pos = izq;
+				cen = 1;
+			}
+		}
+		if ( pos - 1 > inicio ) {
+			reduce( inicio, pos-1, arreglo1 );
+		}
+		if ( pos + 1 < final ) {
+			reduce( pos+1, final, arreglo1 );
 		}
 	}
 }
